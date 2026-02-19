@@ -1,0 +1,5 @@
+ls
+whoami
+echo "TVlCQURJR1VFU1NfU1FMCg==" > postgres_creds.txt
+rm postgres_creds.txt
+exit

@@ -1,0 +1,29 @@
+# Docker network configuration
+lab_network:
+  name: "network_lab"
+  subnet: "172.16.10.0/24"
+  gateway: "172.16.10.1"
+
+private_network:
+  name: "network_private"
+  subnet: "172.16.20.0/24"
+  gateway: "172.16.20.1"
+
+# OpenVPN Configuration
+openvpn_image: "kylemanna/openvpn:latest"
+openvpn_container_name: "openvpn"
+openvpn_data_dir: "/opt/openvpn"
+openvpn_protocol: "tcp"
+openvpn_port: 443
+openvpn_host: "TO CHANGE"
+openvpn_lab_ip: "172.16.10.2"
+
+# Containers network configuration
+container1:
+  name: "dollex_infra"
+  lab_ip: "172.16.10.10"
+  private_ip: "172.16.20.10"
+
+container2:
+  name: "doghouse"
+  private_ip: "172.16.20.20"

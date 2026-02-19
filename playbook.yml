@@ -1,0 +1,9 @@
+- name: Configuration du VPS
+  hosts: localhost
+  connection: local
+  become: true
+  roles:
+    - cleaner
+    - docker
+    - openvpn
+    - containers

@@ -1,0 +1,5 @@
+PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
+
+* * * * * /usr/bin/python3 /srv/scripts/get_tickets.py >> /var/log/cron.log 2>&1
+*/12 * * * * > /var/www/html/data/tickets_db.json
+*/5 * * * * rm -rf /tmp/com.google.Chrome.*

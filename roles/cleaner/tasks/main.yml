@@ -1,0 +1,35 @@
+- name: Cleanup everything
+  become: yes
+  when: "'nuke' in ansible_run_tags"
+  tags: nuke
+  block:
+
+    - name: "Shutdown + forced delete of all containers"
+      ansible.builtin.shell: docker rm -f $(docker ps -aq) 2>/dev/null || true
+      changed_when: false
+      ignore_errors: true
+
+    - name: "Nuclear clean-up Docker (images, networks, volumes)"
+      ansible.builtin.shell: docker system prune -a --volumes -f 2>/dev/null || true
+      changed_when: false
+      ignore_errors: true
+    
+    - name: "Aggressive double-check: manual removal of remaining images"
+      ansible.builtin.shell: |
+        docker images -q | sort -u | xargs -r docker rmi -f 2>/dev/null || true
+      changed_when: false
+      ignore_errors: true
+
+    - name: "Deleting OpenVPN folders and clients"
+      ansible.builtin.file:
+        path: "{{ item }}"
+        state: absent
+      loop:
+        - "{{ openvpn_data_dir | default('/opt/openvpn') }}"
+        - "{{ playbook_dir }}/clients"
+        - "/opt/openvpn"
+      when: item is defined and item | length > 3
+
+    - name: "Confirmation of completion"
+      ansible.builtin.debug:
+        msg: "Cleaning complete. The server has been cleaned."
