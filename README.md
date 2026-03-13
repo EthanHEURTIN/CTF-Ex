@@ -117,6 +117,9 @@ Welcome in the CTF-Ex ! Your objective is to take control of all the machines in
 
 Good luck ! ![:aga:](https://cdn.discordapp.com/emojis/1454841722965331979.webp?size=20) (be careful of rabbit holes... ![:PRANKEX:](https://cdn.discordapp.com/emojis/973591358747074580.webp?size=20&animated=true))
 
+## Write Up
+The write up is available in the repo, but try the CTF without 😁
+
 ## Special thanks
 
 Thanks to Dinohh for giving me access to Dollex.io's ASCIIS while the site was undergoing maintenance !
